@@ -1,0 +1,18 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" style="max-width: 500px; margin: 0 auto;">
+        <div class="form-group">
+            <app-switch formControlName="agree"></app-switch>
+        </div>
+        <div class="form-group">
+            <label>Frist name:</label>
+            <input class="form-control"  formControlName="firstName">
+        </div>
+        <div class="form-group">
+            <label>Last name:</label>
+            <input class="form-control"  formControlName="lastName">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+    </form>
+    {{form.value | json}} <br>
+    {{form.valid | json}}
+</div>
