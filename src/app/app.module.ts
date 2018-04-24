@@ -5,8 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { SharedModule } from './Shared/app.shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { FormComponent } from './shared/form/form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormComponent } from './feature/form/form.component';
 @NgModule({
   declarations: [AppComponent, FormComponent],
   imports: 

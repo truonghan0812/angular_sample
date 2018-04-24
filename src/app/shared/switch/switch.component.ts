@@ -1,23 +1,13 @@
 import { Component, OnInit, forwardRef, Self } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validators, AbstractControl, NgControl } from '@angular/forms';
+import { ControlValueAccessor, Validators, AbstractControl, NgControl } from '@angular/forms';
 
 @Component({
     selector: 'app-switch',
-    templateUrl:'./switch.component.html' ,
-    providers: [
-        // {   provide: NG_VALUE_ACCESSOR, 
-        //     multi:true, 
-        //     useExisting: forwardRef(() => SwitchComponent)
-        // },//This make form-directive can see switch button
-        // {
-        //     provide: NG_VALIDATORS,
-        //     multi: true,
-        //     useExisting: SwitchComponent
-        // }
-    ]
+    templateUrl:'./switch.component.html' 
 })
 export class SwitchComponent implements ControlValueAccessor, OnInit {
     _onChange: (value: any) => void;
+    _onTouched: (value: any) => void;
     _isActive: boolean;
 
     ngOnInit() {
@@ -50,7 +40,7 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
         this._onChange = fn;
     }
     registerOnTouched(fn: any): void {
-        console.warn("Method not implemented.");
+       this._onTouched = fn;
     }
     setDisabledState?(isDisabled: boolean): void {
         console.warn("Method not implemented.");

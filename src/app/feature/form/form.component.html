@@ -11,6 +11,9 @@
             <label>Last name:</label>
             <input class="form-control"  formControlName="lastName">
         </div>
+        <div class="form-group">
+                <app-address formControlName="address"></app-address>
+        </div>
         <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
     </form>
     {{form.value | json}} <br>
