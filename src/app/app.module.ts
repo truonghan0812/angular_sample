@@ -7,6 +7,8 @@ import { SharedModule } from './Shared/app.shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './feature/form/form.component';
+import { CoreModule } from './core/core.module';
+import { HttpModule } from "@angular/http";
 @NgModule({
   declarations: [AppComponent, FormComponent],
   imports: 
@@ -15,7 +17,9 @@ import { FormComponent } from './feature/form/form.component';
     BrowserModule,
     SharedModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule.forRoot(),
+    HttpModule 
   ],
   exports: [],
   providers: [],

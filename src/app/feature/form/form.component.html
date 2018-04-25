@@ -5,17 +5,32 @@
         </div>
         <div class="form-group">
             <label>Frist name:</label>
-            <input class="form-control"  formControlName="firstName">
+            <input class="form-control" formControlName="firstName">
+            <div class="alert alert-danger" style="margin-top: 5px;" *ngIf="firstName.invalid && firstName.touched">
+                Required
+            </div>
         </div>
         <div class="form-group">
             <label>Last name:</label>
-            <input class="form-control"  formControlName="lastName">
+            <input class="form-control" formControlName="lastName">
+            <div class="alert alert-danger" style="margin-top: 5px;" *ngIf="lastName.invalid && lastName.touched">
+                Required
+            </div>
         </div>
         <div class="form-group">
-                <app-address formControlName="address"></app-address>
+            <app-address formControlName="address"></app-address>
+        </div>
+        <div class="form-group">
+            <label>Quantity:</label>
+            <input class="form-control" formControlName="quantity">
+            <div class="alert alert-danger" style="margin-top: 5px;" *ngIf="quantity.hasError('required')">
+                Required
+            </div>
+            <div class="alert alert-danger" style="margin-top: 5px;" *ngIf="quantity.hasError('toolow')">
+                Your quantity is too low. Expected {{quantity.errors.toolow.exected}} but yours is {{quantity.value}}
+            </div>
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
     </form>
-    {{form.value | json}} <br>
-    {{form.valid | json}}
+    {{form.value | json}} <br> {{form.valid | json}}
 </div>
