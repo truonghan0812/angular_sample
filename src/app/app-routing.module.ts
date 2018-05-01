@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { FormComponent } from './feature/form/form.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'form', pathMatch: 'full' },
   { path: 'home', component: AppComponent },
   { path: 'form', component: FormComponent}
 ];

@@ -3,6 +3,7 @@ import { FormGroup, AbstractControl } from '@angular/forms';
 import { FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { DataService } from '../../core/data.service';
 
 @Component({
   selector: 'app-form',
@@ -10,8 +11,9 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent {
+  formValid: boolean;
   form = new FormGroup({
-    agree: new FormControl(),
+    // agree: new FormControl(),
     address: new FormControl(),
     firstName: new FormControl(
       '',
@@ -24,10 +26,11 @@ export class FormComponent {
       {
         validators: Validators.required,
         updateOn: 'blur'
-      }),
+      })
+      ,
       quantity: new FormControl(
         '',
-        Validators.required, 
+        Validators.required,
         this.minimunQuantity.bind(this)
       )
   });
@@ -36,12 +39,13 @@ export class FormComponent {
   get lastName(){return this.form.get('lastName')}
   get quantity(){return this.form.get('quantity')}
 
-  constructor(private _http: Http) {}
+  constructor(private _dataService: DataService) {
+    _dataService.getMinimumQuantity().subscribe(res => console.log(res))
+  }
 
   minimunQuantity(ctrl: AbstractControl): Observable<ValidationErrors | null>{
-    return this._http.get('src/app/config/data.json')
-    .map(res => res.json())
-    .map(quantity => {
+    return this._dataService.getMinimumQuantity()
+    .map((quantity: any) => {
       return ctrl.value > quantity.quantity ? null : {toolow:{exected: quantity.quantity}};
     });
   }
